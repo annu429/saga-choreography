@@ -7,7 +7,6 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 import java.time.Instant;
-import java.util.Date;
 import java.util.List;
 
 @Data
