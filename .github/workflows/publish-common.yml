@@ -1,42 +1,26 @@
-name: Publish Common Module
+name: Publish movie-booking-commons
 
 on:
   push:
-    branches: ["master", "main"]
-  workflow_dispatch:
+    paths:
+      - 'movie-booking-commons/**'
+      - '.github/workflows/publish-common.yml'
 
 jobs:
   publish:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
+      - name: Setup Java
+        uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: 'temurin'
-          server-id: github
-          settings-path: ${{ github.workspace }}
 
-      - name: Create settings.xml
+      - name: Build & Deploy to GitHub Packages
         run: |
-          cat <<EOF > ${{ github.workspace }}/settings.xml
-          <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
-            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
-                                https://maven.apache.org/xsd/settings-1.0.0.xsd">
-            <servers>
-              <server>
-                <id>github</id>
-                <username>${{ github.actor }}</username>
-                <password>${{ secrets.GITHUB_TOKEN }}</password>
-              </server>
-            </servers>
-          </settings>
-          EOF
-
-      - name: Build & Deploy
-        run: mvn -B -s ${{ github.workspace }}/settings.xml -pl movie-booking-commons -am deploy
+          cd movie-booking-commons
+          mvn -B -s ../settings.xml deploy
