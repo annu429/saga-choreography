@@ -29,6 +29,16 @@
 	<properties>
 		<java.version>21</java.version>
 	</properties>
+
+	<repositories>
+		<repository>
+			<id>github</id>
+			<name>GitHub Packages</name>
+			<url>https://maven.pkg.github.com/annu429/saga-choreography</url>
+			<releases><enabled>true</enabled></releases>
+			<snapshots><enabled>true</enabled></snapshots>
+		</repository>
+	</repositories>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -77,7 +87,7 @@
 		<dependency>
 			<groupId>com.anand.common</groupId>
 			<artifactId>movie-booking-commons</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>1.0.0</version>
 		</dependency>
 	</dependencies>
 

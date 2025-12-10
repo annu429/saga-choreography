@@ -5,7 +5,6 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<!-- Your coordinates -->
 	<groupId>com.anand.common</groupId>
 	<artifactId>movie-booking-commons</artifactId>
 	<version>1.0.0</version>
@@ -13,8 +12,11 @@
 
 	<name>movie-booking-commons</name>
 	<description>Common module for movie booking services</description>
-
-	<!-- Necessary for GitHub Packages -->
+	<properties>
+		<maven.compiler.source>21</maven.compiler.source>
+		<maven.compiler.target>21</maven.compiler.target>
+	</properties>
+	<!-- Required for GitHub Packages -->
 	<distributionManagement>
 		<repository>
 			<id>github</id>
@@ -23,7 +25,4 @@
 		</repository>
 	</distributionManagement>
 
-	<dependencies>
-		<!-- add dependencies here if needed -->
-	</dependencies>
 </project>
